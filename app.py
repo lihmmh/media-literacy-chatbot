@@ -132,7 +132,7 @@ with st.sidebar:
         st.session_state.news = generate_news(level)
         st.session_state.history = []
         st.session_state.step = 0
-        st.experimental_rerun()
+        st.rerun()
 
 
 # ================================
@@ -196,7 +196,7 @@ if st.session_state.step == 0:
             reply = run_model_with_history(st.session_state.history, system_instruction)
             st.session_state.history.append({"role": "assistant", "content": reply})
             st.session_state.step = 1
-            st.experimental_rerun()
+            st.rerun()
 
 
 # ---------- STEP 1 → 2: 감정적/과장 표현 찾기 ----------
@@ -238,7 +238,7 @@ if st.session_state.step == 1:
             reply = run_model_with_history(st.session_state.history, system_instruction)
             st.session_state.history.append({"role": "assistant", "content": reply})
             st.session_state.step = 2
-            st.experimental_rerun()
+            st.rerun()
 
 
 # ---------- STEP 2 → 3: 빠진 정보/출처 생각하기 ----------
@@ -272,7 +272,7 @@ if st.session_state.step == 2:
             reply = run_model_with_history(st.session_state.history, system_instruction)
             st.session_state.history.append({"role": "assistant", "content": reply})
             st.session_state.step = 3
-            st.experimental_rerun()
+            st.rerun()
 
 
 # ---------- STEP 3 → 4: 최종 판단 + 학습 정리 ----------
@@ -318,7 +318,7 @@ if st.session_state.step == 3:
             reply = run_model_with_history(st.session_state.history, system_instruction)
             st.session_state.history.append({"role": "assistant", "content": reply})
             st.session_state.step = 4
-            st.experimental_rerun()
+            st.rerun()
 
 
 # ---------- STEP 4: 최종 출력 ----------
@@ -331,4 +331,5 @@ if st.session_state.step == 4:
         # 히스토리와 단계만 초기화하고, 뉴스는 유지할지 여부 선택 가능
         st.session_state.history = []
         st.session_state.step = 0
-        st.experimental_rerun()
+        st.rerun()
+
